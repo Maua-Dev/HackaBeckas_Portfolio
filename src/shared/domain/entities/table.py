@@ -1,5 +1,5 @@
 import abc
-from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.domain_errors import TypeError
 
 class Table(abc.ABC):
     tableNumber: int
@@ -7,8 +7,8 @@ class Table(abc.ABC):
     
     def __init__(self, tableNumber: int, numberOfPeople: int):
         if type(tableNumber) != int:
-            raise EntityError("tableNumber must be int")
+            raise TypeError('tableNumber', 'int')
         if type(numberOfPeople) != int:
-            raise EntityError("numberOfPeople must be int")
+            raise TypeError('numberOfPeople', 'int')
         self.tableNumber = tableNumber
         self.numberOfPeople = numberOfPeople

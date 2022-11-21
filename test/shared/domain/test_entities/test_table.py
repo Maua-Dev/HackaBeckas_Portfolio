@@ -1,7 +1,7 @@
 import pytest
 
-from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.domain.entities.table import Table
+from src.shared.helpers.errors.domain_errors import TypeError
 
 class Test_table():
     def test_table(self):
@@ -11,10 +11,10 @@ class Test_table():
         assert table.numberOfPeople == 2
     
     def test_table_tableNumber_must_be_int(self):
-        with pytest.raises(EntityError):
+        with pytest.raises(TypeError):
             Table(tableNumber='Um', numberOfPeople=2)
     
     def test_table_numberOfPeople_must_be_int(self):
-        with pytest.raises(EntityError):
+        with pytest.raises(TypeError):
             table = Table(numberOfPeople='Um', tableNumber=1)
     

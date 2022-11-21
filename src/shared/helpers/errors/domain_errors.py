@@ -5,6 +5,10 @@ class EntityError(BaseError):
     def __init__(self, message: str):
         super().__init__(f'Field {message} is not valid')
 
+class TypeError(EntityError):
+    def __init__(self, variable: str, type: str):
+        super().__init__(f'{variable} must be {type}')
+
 class EntityParameterTypeError(EntityError):
     def __init__(self, message: str):
         super().__init__(message)
