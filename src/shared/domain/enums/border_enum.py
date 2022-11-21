@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BORDA(Enum):
+class BORDER(Enum):
     NONE = "NONE"
     CATUPIRY = "CATUPIRY"
     CHEDDAR = "CHEDDAR"

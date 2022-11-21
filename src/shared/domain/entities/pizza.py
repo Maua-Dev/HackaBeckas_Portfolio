@@ -1,18 +1,18 @@
 import abc
 from src.shared.domain.enums.flavor_enum import FLAVOR
-from src.shared.domain.enums.borda_enum import BORDA
+from src.shared.domain.enums.border_enum import BORDER
 from src.shared.helpers.errors.domain_errors import TypeError
 
 class Pizza(abc.ABC):
     flavor: FLAVOR
-    borda: BORDA
+    border: BORDER
     
-    def __init__(self, flavor: FLAVOR, borda: BORDA = None):
-        if borda == None:
-            borda == BORDA.NONE
+    def __init__(self, flavor: FLAVOR, border: BORDER = None):
+        if border == None:
+            border == BORDER.NONE
         if type(flavor) != FLAVOR:
             raise TypeError('flavor', 'FLAVOR')
-        if type(borda) != BORDA:
-            raise TypeError('borda', 'BORDA')
+        if type(border) != BORDER:
+            raise TypeError('border', 'border')
         self.flavor = flavor
-        self.borda = borda
+        self.border = border
