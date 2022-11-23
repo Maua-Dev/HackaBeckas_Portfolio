@@ -6,6 +6,7 @@ from src.shared.domain.enums.border_enum import BORDER
 from src.shared.domain.enums.flavor_enum import FLAVOR
 
 class HackabeckasRepositoryMock(IHackabeckasRepository):
+    borders = [border for border in BORDER]
     orders = list[Order]
     
     def __init__(self):
