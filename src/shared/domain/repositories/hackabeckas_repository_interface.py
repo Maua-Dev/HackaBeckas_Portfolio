@@ -8,13 +8,3 @@ class IHackabeckasRepository(ABC):
     @abstractmethod
     def create_order(self, tableNumber:int, numberOfPeople:int, flavor: FLAVOR, border: BORDER) -> Order:
         pass
-    
-    def delete_order():
-        pass
-    
-    def get_order():
-        pass
-    
-    def update_order():
-        pass
-    

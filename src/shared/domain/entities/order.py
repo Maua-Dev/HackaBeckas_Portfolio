@@ -1,9 +1,9 @@
 import abc
 
-from shared.domain.entities.pizza import Pizza
-from shared.domain.entities.table import Table
-from shared.domain.enums.border_enum import BORDER
-from shared.domain.enums.flavor_enum import FLAVOR
+from src.shared.domain.entities.pizza import Pizza
+from src.shared.domain.entities.table import Table
+from src.shared.domain.enums.border_enum import BORDER
+from src.shared.domain.enums.flavor_enum import FLAVOR
 
 class Order(abc.ABC):
     pizza: Pizza

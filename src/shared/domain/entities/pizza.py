@@ -9,10 +9,10 @@ class Pizza(abc.ABC):
     
     def __init__(self, flavor: FLAVOR, border: BORDER = None):
         if border == None:
-            border == BORDER.NONE
+            border = BORDER.NONE
         if type(flavor) != FLAVOR:
-            raise TypeError('flavor', 'FLAVOR')
+            raise TypeError('flavor', 'ENUM.FLAVOR')
         if type(border) != BORDER:
-            raise TypeError('border', 'border')
+            raise TypeError('border', 'ENUM.BORDER')
         self.flavor = flavor
         self.border = border
