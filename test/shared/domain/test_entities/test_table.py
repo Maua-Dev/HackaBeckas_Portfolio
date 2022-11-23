@@ -17,4 +17,8 @@ class Test_table():
     def test_table_numberOfPeople_must_be_int(self):
         with pytest.raises(TypeError):
             table = Table(numberOfPeople='Um', tableNumber=1)
+            
+    def test_table_numberOfPeople_must_be_greater_than_zero(self):
+        with pytest.raises(ValueError):
+            table = Table(numberOfPeople=0, tableNumber=1)
     

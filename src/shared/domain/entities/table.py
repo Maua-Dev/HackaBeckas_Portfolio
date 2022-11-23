@@ -10,5 +10,7 @@ class Table(abc.ABC):
             raise TypeError('tableNumber', 'int')
         if type(numberOfPeople) != int:
             raise TypeError('numberOfPeople', 'int')
+        if numberOfPeople <= 0:
+            raise ValueError('numberOfPeople', 'greater than 0')
         self.tableNumber = tableNumber
         self.numberOfPeople = numberOfPeople
