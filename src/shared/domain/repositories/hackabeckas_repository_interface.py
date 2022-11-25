@@ -6,5 +6,5 @@ from src.shared.domain.enums.flavor_enum import FLAVOR
 class IHackabeckasRepository(ABC):
     
     @abstractmethod
-    def create_order(self, tableNumber:int, numberOfPeople:int, flavor: FLAVOR, border: BORDER) -> Order:
+    def create_order(self, id:int, tableNumber:int, numberOfPeople:int, flavor: FLAVOR, border: BORDER) -> Order:
         pass

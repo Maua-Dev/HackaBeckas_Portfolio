@@ -34,18 +34,19 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
                        numberOfPeople=6
                      )]
       self.orders = [Order(
-                      pizza=self.pizzas[0], table=self.tables[0]
+                      id=1, pizza=self.pizzas[0], table=self.tables[0]
       ),
                      Order(
-                      pizza=self.pizzas[1], table=self.tables[1]
+                      id=2, pizza=self.pizzas[1], table=self.tables[1]
                      ),
                      Order(
-                      pizza=self.pizzas[2], table=self.tables[2]
+                      id=3, pizza=self.pizzas[2], table=self.tables[2]
                      )
                      ]
         
-    def create_order(self, tableNumber: int, numberOfPeople: int, flavor: FLAVOR, border: BORDER) -> Order:
+    def create_order(self, id: int, tableNumber: int, numberOfPeople: int, flavor: FLAVOR, border: BORDER) -> Order:
       order = Order(
+        id=id,
         pizza=Pizza(flavor=flavor, border=border),
         table=Table(tableNumber=tableNumber, numberOfPeople=numberOfPeople)
       )

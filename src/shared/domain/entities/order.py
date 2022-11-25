@@ -6,10 +6,15 @@ from src.shared.domain.enums.border_enum import BORDER
 from src.shared.domain.enums.flavor_enum import FLAVOR
 
 class Order(abc.ABC):
+    id: int
     pizza: Pizza
     table: Table
     
-    def __init__(self, pizza: Pizza, table: Table):
+    def __init__(self, id: int, pizza: Pizza, table: Table):
+        if (type(id) != int):
+            raise TypeError('id', 'int')
+        if (id < 0):
+            raise ValueError('id must be greater than 0')
         if (pizza == None or type(pizza) != Pizza):
             raise TypeError('pizza', 'Pizza')
         if (pizza.border == None or type(pizza.border) != BORDER):
