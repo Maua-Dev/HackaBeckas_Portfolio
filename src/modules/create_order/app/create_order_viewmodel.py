@@ -36,5 +36,6 @@ class CreateOrderViewModel:
         return {
             "orderId" : self.order.orderId,
             "table" : TableViewModel(self.order.table).to_dict(),
-            "pizza" : PizzaViewModel(self.order.pizza).to_dict()
+            "pizza" : PizzaViewModel(self.order.pizza).to_dict(),
+            "message" : "The order has been created"
         }

@@ -26,7 +26,8 @@ class Test_CreateOrderViewModel:
             "pizza" : {
                 "flavor" : "CALABRESA",
                 "border" : "CATUPIRY"
-            }
+            },
+            "message" : "The order has been created"
         }
         
         assert orderViewModel == expected
