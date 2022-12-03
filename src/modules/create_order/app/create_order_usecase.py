@@ -8,6 +8,6 @@ class CreateOrderUseCase:
     def __init__(self, repo: IHackabeckasRepository):
         self.repo = repo
         
-    def __call__(self, id:int, tableNumber:int, numberOfPeople:int, flavor:FLAVOR, border:BORDER) -> Order:
-        return self.repo.create_order(id, tableNumber, numberOfPeople, flavor, border)
+    def __call__(self, orderId:int, tableNumber:int, numberOfPeople:int, flavor:FLAVOR, border:BORDER) -> Order:
+        return self.repo.create_order(orderId, tableNumber, numberOfPeople, flavor, border)
 

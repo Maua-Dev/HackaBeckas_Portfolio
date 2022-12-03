@@ -9,7 +9,7 @@ class Test_CreateOrderUsecase:
         repo = HackabeckasRepositoryMock()
         usecase = CreateOrderUseCase(repo=repo)
         len_pretest = len(repo.orders)
-        order = usecase(id=1, tableNumber=1, numberOfPeople=2, flavor=FLAVOR.CALABRESA, border=BORDER.CATUPIRY)
+        order = usecase(orderId=1, tableNumber=1, numberOfPeople=2, flavor=FLAVOR.CALABRESA, border=BORDER.CATUPIRY)
         assert len(repo.orders) == len_pretest+1
         assert order.table.tableNumber == 1
         assert order.table.numberOfPeople == 2
