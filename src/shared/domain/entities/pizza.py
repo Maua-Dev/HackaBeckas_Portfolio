@@ -11,8 +11,8 @@ class Pizza(abc.ABC):
         if border == None:
             border = BORDER.NONE
         if type(flavor) != FLAVOR:
-            raise TypeError('flavor', 'ENUM.FLAVOR')
+            raise TypeError('pizza.flavor', 'ENUM.FLAVOR')
         if type(border) != BORDER:
-            raise TypeError('border', 'ENUM.BORDER')
+            raise TypeError('pizza.border', 'ENUM.BORDER')
         self.flavor = flavor
         self.border = border

@@ -1,5 +1,6 @@
 import abc
 from src.shared.helpers.errors.domain_errors import TypeError
+from src.shared.helpers.errors.domain_errors import EntityError
 
 class Table(abc.ABC):
     tableNumber: int
@@ -11,6 +12,6 @@ class Table(abc.ABC):
         if type(numberOfPeople) != int:
             raise TypeError('numberOfPeople', 'int')
         if numberOfPeople <= 0:
-            raise ValueError('numberOfPeople', 'greater than 0')
+            raise EntityError('numberOfPeople')
         self.tableNumber = tableNumber
         self.numberOfPeople = numberOfPeople
