@@ -44,11 +44,6 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
                      )
                      ]
         
-    def create_order(self, orderId: int, tableNumber: int, numberOfPeople: int, flavor: FLAVOR, border: BORDER) -> Order:
-      order = Order(
-        orderId=orderId,
-        pizza=Pizza(flavor=flavor, border=border),
-        table=Table(tableNumber=tableNumber, numberOfPeople=numberOfPeople)
-      )
+    def create_order(self, order : Order) -> Order:
       self.orders.append(order)
       return order
