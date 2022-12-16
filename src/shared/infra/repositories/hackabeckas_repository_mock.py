@@ -57,7 +57,7 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
       for order in self.orders:
         if order.orderId == orderId:
           return order
-      raise NoItemsFound('orderId')
+      return None
     
     def get_all_orders(self) -> List[Order]:
       return self.orders
