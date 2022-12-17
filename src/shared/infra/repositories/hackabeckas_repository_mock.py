@@ -46,12 +46,6 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
                      )
                      ]
         
-    def create_order(self, new_order : Order) -> Order:
-      for order in self.orders: # eventually change to get_order
-        if order.orderId == new_order.orderId:
-          raise DuplicatedItem('orderId')     
-      self.orders.append(new_order)
-      return new_order
     
     def get_order(self, orderId: int) -> Order:
       for order in self.orders:
@@ -61,3 +55,9 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
     
     def get_all_orders(self) -> List[Order]:
       return self.orders
+    
+    def create_order(self, new_order : Order) -> Order:
+      if self.get_order(orderId=new_order.orderId) != None:
+          raise DuplicatedItem('orderId')     
+      self.orders.append(new_order)
+      return new_order

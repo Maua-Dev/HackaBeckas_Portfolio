@@ -6,11 +6,14 @@ class IHackabeckasRepository(ABC):
     
     @abstractmethod
     def create_order(self, order : Order) -> Order:
+        '''
+        if order duplicated, raise DuplicatedItem error
+        '''
         pass
     
     @abstractmethod
     def get_order(self, orderId: int) -> Order:
-        # If order not found, raise error
+        # If order not found, raise ItemsNotFound error
         pass
     
     @abstractmethod
