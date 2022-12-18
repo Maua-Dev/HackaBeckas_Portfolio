@@ -1,6 +1,6 @@
 from src.shared.infra.repositories.hackabeckas_repository_mock import HackabeckasRepositoryMock
-from src.modules.create_order.app.create_order_usecase import CreateOrderUseCase
-from src.modules.create_order.app.create_order_controller import CreateOrderController
+from .create_order_usecase import CreateOrderUseCase
+from .create_order_controller import CreateOrderController
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 def lambda_handler(event, context):

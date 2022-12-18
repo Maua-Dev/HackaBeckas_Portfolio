@@ -2,7 +2,7 @@ from src.shared.domain.entities.order import Order
 from src.shared.domain.enums.flavor_enum import FLAVOR
 from src.shared.domain.enums.border_enum import BORDER
 from .create_order_viewmodel import CreateOrderViewModel
-from src.modules.create_order.app.create_order_usecase import CreateOrderUseCase
+from .create_order_usecase import CreateOrderUseCase
 from src.shared.helpers.http.http_models import Created, HttpRequest, HttpResponse, BadRequest, InternalServerError
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.controller_errors import MissingParameters

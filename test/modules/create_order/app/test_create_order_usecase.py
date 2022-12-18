@@ -1,4 +1,5 @@
 import pytest
+from src.shared.helpers.errors.usecase_errors import DuplicatedItem
 from src.shared.domain.entities.pizza import Pizza
 from src.shared.domain.entities.table import Table
 from src.shared.domain.entities.order import Order
@@ -13,12 +14,25 @@ class Test_CreateOrderUseCase:
         usecase = CreateOrderUseCase(repo=repo)
         len_pretest = len(repo.orders)
         order = usecase(order=Order(
-            orderId=1, 
+            orderId=45, 
             table=Table(tableNumber=1, numberOfPeople=2),
             pizza=Pizza(flavor=FLAVOR.CALABRESA, border=BORDER.CATUPIRY)
         ))
         assert len(repo.orders) == len_pretest+1
+        assert order.orderId == 45
         assert order.table.tableNumber == 1
         assert order.table.numberOfPeople == 2
         assert order.pizza.flavor == FLAVOR.CALABRESA
         assert order.pizza.border == BORDER.CATUPIRY
+    
+    def test_create_order_usecase_duplicated_item(self):
+        repo = HackabeckasRepositoryMock()
+        usecase = CreateOrderUseCase(repo=repo)
+        len_pretest = len(repo.orders)
+        with pytest.raises(DuplicatedItem):
+            order = usecase(order=Order(
+            orderId=1, 
+            table=Table(tableNumber=1, numberOfPeople=2),
+            pizza=Pizza(flavor=FLAVOR.CALABRESA, border=BORDER.CATUPIRY)
+            ))
+            
