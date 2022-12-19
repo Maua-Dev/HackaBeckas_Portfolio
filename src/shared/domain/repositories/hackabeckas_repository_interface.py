@@ -21,6 +21,6 @@ class IHackabeckasRepository(ABC):
         pass
     
     @abstractmethod
-    def delete_order(self) -> Order:
+    def delete_order(self, orderId: int) -> Order:
         pass
     

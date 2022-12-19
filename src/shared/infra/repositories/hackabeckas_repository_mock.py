@@ -63,7 +63,8 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
       return new_order
     
     def delete_order(self, orderId: int) -> Order:
-      if self.get_order(orderId=orderId) == None:
-          raise NoItemsFound('orderId')   
-      order = self.orders.pop(self.get_order(orderId=orderId))
-      return order
+      for i in range(len(self.orders)):
+        if self.orders[i].orderId == orderId:
+          order = self.orders.pop(i)  
+          return order
+      raise NoItemsFound('orderId')
