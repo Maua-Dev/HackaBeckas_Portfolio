@@ -5,7 +5,7 @@ from src.shared.domain.entities.table import Table
 from src.shared.domain.enums.border_enum import BORDER
 from src.shared.domain.enums.flavor_enum import FLAVOR
 from src.shared.helpers.errors.domain_errors import TypeError
-from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
 
 class Order(abc.ABC):
     orderId: int
@@ -32,3 +32,15 @@ class Order(abc.ABC):
         
         self.table = table
         
+    @staticmethod
+    def validade_id(orderId: int):
+        if orderId == None:
+            return False
+       
+        if type(orderId) != int:
+            raise EntityParameterTypeError('orderId must be int')
+        
+        if (orderId <= 0):
+            raise EntityError('orderId')
+
+        return True
