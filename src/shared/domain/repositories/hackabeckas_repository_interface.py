@@ -19,3 +19,8 @@ class IHackabeckasRepository(ABC):
     @abstractmethod
     def get_all_orders(self) -> List[Order]:
         pass
+    
+    @abstractmethod
+    def delete_order(self) -> List[Order]:
+        pass
+    
