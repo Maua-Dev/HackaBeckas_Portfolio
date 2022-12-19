@@ -61,3 +61,10 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
           raise DuplicatedItem('orderId')     
       self.orders.append(new_order)
       return new_order
+    
+    def delete_order(self, orderId: int) -> Order:
+      for i in range(len(self.orders)):
+        if self.orders[i].orderId == orderId:
+          order = self.orders.pop(i)  
+          return order
+      raise NoItemsFound('orderId')
