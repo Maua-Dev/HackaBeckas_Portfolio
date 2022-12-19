@@ -14,7 +14,7 @@ class Test_DeleteOrderController:
         usecase = DeleteOrderUsecase(repo=repo)
         controller = DeleteOrderController(usecase=usecase)
         request = HttpRequest(body={
-            "orderId" : 2
+            "orderId" : "2"
         })
         response = controller(request=request)
         expected = {
@@ -40,7 +40,7 @@ class Test_DeleteOrderController:
         controller = DeleteOrderController(usecase=usecase)
         
         request = HttpRequest(body={
-            "orderId" : 90210
+            "orderId" : "90210"
         })
         response = controller(request=request)
         
@@ -66,9 +66,10 @@ class Test_DeleteOrderController:
         controller = DeleteOrderController(usecase=usecase)
 
         request = HttpRequest(body={
-            "orderId" : "2"
+            "orderId" : 2
         })
         response = controller(request=request)
         assert response.status_code == 400
-        assert response.body == "orderId must be int"
+        assert response.body == "Field orderId isn't in the right type.\n Received: int.\n Expected: str"
+
         
