@@ -6,6 +6,8 @@ from src.shared.domain.entities.pizza import Pizza
 from src.shared.domain.entities.table import Table
 from src.shared.domain.enums.border_enum import BORDER
 from src.shared.domain.enums.flavor_enum import FLAVOR
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.domain_errors import EntityError
 
 class HackabeckasRepositoryMock(IHackabeckasRepository):
     pizzas = list[Pizza]
@@ -46,7 +48,38 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
                      )
                      ]
         
-    
+        
+    def create_order(self, new_order : Order) -> Order:
+      if self.get_order(orderId=new_order.orderId) != None:
+          raise DuplicatedItem('orderId')     
+      self.orders.append(new_order)
+      return new_order
+
+    def update_order(self, orderId, newFlavor: FLAVOR = None, newBorder: BORDER = None, new_table: int= None, new_number_of_peopler: int = None) -> Order:
+      if not Order.validade_id(orderId):
+           raise EntityError('orderId')
+
+      updated_order = None
+      for order in self.orders:
+        if order.orderId == orderId:
+          updated_order = order
+          break
+      
+      if updated_order == None:
+        raise NoItemsFound('orderId')
+
+      if type(newFlavor) == FLAVOR and newFlavor != None:
+          updated_order.pizza.flavor = newFlavor
+
+      if type(newBorder) == BORDER and newBorder != None:
+          updated_order.pizza.border = newBorder
+
+      if type(new_table) == int and new_table != None:
+          updated_order.table.tableNumber = new_table
+
+      if type(new_number_of_peopler) == int and new_number_of_peopler != None:
+          updated_order.table.numberOfPeople = new_number_of_peopler
+
     def get_order(self, orderId: int) -> Order:
       for order in self.orders:
         if order.orderId == orderId:
@@ -56,15 +89,10 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
     def get_all_orders(self) -> List[Order]:
       return self.orders
     
-    def create_order(self, new_order : Order) -> Order:
-      if self.get_order(orderId=new_order.orderId) != None:
-          raise DuplicatedItem('orderId')     
-      self.orders.append(new_order)
-      return new_order
-    
     def delete_order(self, orderId: int) -> Order:
       for i in range(len(self.orders)):
         if self.orders[i].orderId == orderId:
           order = self.orders.pop(i)  
           return order
       raise NoItemsFound('orderId')
+

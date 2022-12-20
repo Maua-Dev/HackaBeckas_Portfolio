@@ -10,6 +10,10 @@ class IHackabeckasRepository(ABC):
         if order duplicated, raise DuplicatedItem error
         '''
         pass
+
+    @abstractmethod
+    def update_order(self, orderId, newFlavor : FLAVOR, newBorder : BORDER, new_table: int, new_number_of_people: int) -> Order:
+        pass
     
     @abstractmethod
     def get_order(self, orderId: int) -> Order:
