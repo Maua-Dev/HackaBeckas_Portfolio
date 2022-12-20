@@ -1,3 +1,5 @@
+from typing import List
+from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.shared.domain.repositories.hackabeckas_repository_interface import IHackabeckasRepository
 from src.shared.domain.entities.order import Order
 from src.shared.domain.entities.pizza import Pizza
@@ -46,9 +48,12 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
                      )
                      ]
         
-    def create_order(self, order : Order) -> Order:
-      self.orders.append(order)
-      return order
+        
+    def create_order(self, new_order : Order) -> Order:
+      if self.get_order(orderId=new_order.orderId) != None:
+          raise DuplicatedItem('orderId')     
+      self.orders.append(new_order)
+      return new_order
 
     def update_order(self, orderId, newFlavor: FLAVOR = None, newBorder: BORDER = None, new_table: int= None, new_number_of_peopler: int = None) -> Order:
       if not Order.validade_id(orderId):
@@ -75,4 +80,19 @@ class HackabeckasRepositoryMock(IHackabeckasRepository):
       if type(new_number_of_peopler) == int and new_number_of_peopler != None:
           updated_order.table.numberOfPeople = new_number_of_peopler
 
-      
+    def get_order(self, orderId: int) -> Order:
+      for order in self.orders:
+        if order.orderId == orderId:
+          return order
+      return None
+    
+    def get_all_orders(self) -> List[Order]:
+      return self.orders
+    
+    def delete_order(self, orderId: int) -> Order:
+      for i in range(len(self.orders)):
+        if self.orders[i].orderId == orderId:
+          order = self.orders.pop(i)  
+          return order
+      raise NoItemsFound('orderId')
+
